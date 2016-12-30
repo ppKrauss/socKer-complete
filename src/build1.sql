@@ -1,5 +1,5 @@
---
--- See https://github.com/ppKrauss/socKer-complete
+-- 
+-- BUILD1. See https://github.com/ppKrauss/socKer-complete
 --
 
 DROP SCHEMA IF EXISTS socker CASCADE; 
@@ -37,16 +37,6 @@ CREATE TABLE socker.person (
 	UNIQUE(vatID)
 );
 
-CREATE TABLE socker.telcom (
-	-- 
-	-- A telecommunication (telcom) address, like telephone or e-mail.
-	--
-	id bigserial NOT NULL PRIMARY KEY,
-	ttype bigint REFERENCES socker.telcom_type(id), -- 1=telephone, 2=email, 3=url_home, 4=twiter, etc.
-	tvalue text, -- the telecommunication "address" (URI) normalized value
-	UNIQUE(ttype,tvalue)
-);
-
 CREATE TABLE socker.telcom_type (
 	-- 
 	-- The ENUM of telecommunication types and properties. 
@@ -56,6 +46,15 @@ CREATE TABLE socker.telcom_type (
 	UNIQUE(info->>'name') -- "telephone", "email", "home", "skype", "facebook", etc. must be unique
 );
 
+CREATE TABLE socker.telcom (
+	-- 
+	-- A telecommunication (telcom) address, like telephone or e-mail.
+	--
+	id bigserial NOT NULL PRIMARY KEY,
+	ttype bigint REFERENCES socker.telcom_type(id), -- 1=telephone, 2=email, 3=url_home, 4=twiter, etc.
+	tvalue text, -- the telecommunication "address" (URI) normalized value
+	UNIQUE(ttype,tvalue)
+);
 
 CREATE TABLE socker.place (
 	-- 
@@ -146,8 +145,8 @@ CREATE FUNCTION socker.agentelcom_radio_tg() RETURNS TRIGGER AS $func$
 	    IF NEW.ismain THEN
 		refval :=  socker.telcom_ttype(NEW.id_telcom);
 		UPDATE socker.agent_telcom 
-		SET ismain=false 
-		WHERE agid=NEW.agid AND ismain=true AND socker.telcom_ttype(id_telcom)=refval AND id_telcom!=NEW.id_telcom;
+		SET ismain=false
+		WHERE ismain AND agid=NEW.agid AND id_telcom!=NEW.id_telcom AND socker.telcom_ttype(id_telcom)=refval;
 	    END IF;
 	    RETURN NEW;
 	END;
@@ -162,25 +161,6 @@ CREATE TRIGGER agentelcom_radio_tg AFTER INSERT OR UPDATE ON socker.agent_telcom
 -----
 -- COMPLEMENTAR VIEWS
 
-CREATE VIEW socker.agent_telcom_full AS 
-  SELECT t.*, a.* 
-  FROM socker.telcom t INNER JOIN socker.agent_telcom a ON a.id_telcom=t.id
-;
-
-CREATE VIEW socker.agent_full AS
- SELECT a.*, p.vatid, p.info 
- FROM socker.agent a INNER JOIN socker.person p ON p.id=a.agid
- UNION
- SELECT a.*, o.vatid, o.info 
- FROM socker.agent a INNER JOIN socker.organization o ON o.id=a.agid
-;
-
-CREATE VIEW socker.agent_full_active AS
- SELECT a.*, p.vatid, p.info 
- FROM socker.agent a INNER JOIN socker.person p ON p.id=a.agid AND a.agstatus>0
- UNION
- SELECT a.*, o.vatid, o.info 
- FROM socker.agent a INNER JOIN socker.organization o ON o.id=a.agid AND a.agstatus>0
-;
-
-
+-- CREATE VIEW socker.agent_telcom_full AS 
+-- CREATE VIEW socker.agent_place_full AS
+-- ...
