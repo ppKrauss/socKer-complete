@@ -10,6 +10,7 @@ CREATE TABLE socker.ruletype (
 	def_url text CHECK(char_length(def_url)<250), -- cool URLs, like SchemaOrg or Wikidata, are short
 	valid_pairs int[] NOT NULL,  -- agtype-agtype pair, by oneDigit-concatenation. (ex. 11,12,21,22)
 	iscommutative boolean NOT NULL DEFAULT true,
+	accept_contactpoint boolean NOT NULL DEFAULT false, -- for check before to add a RelatContactPoint.
 	info JSONb NOT NULL CHECK (info->>'constraints' IS NOT NULL),
 	UNIQUE(def_url)
 );
