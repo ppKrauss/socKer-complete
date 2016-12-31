@@ -34,12 +34,11 @@ Person-Person | [children](https://schema.org/children), ...
 Agent-Agent | [follows](https://schema.org/follows), ...
 
 ## Objective
-To implement this model **with good Back-end Framework and good SQL**, 
+To implement this model **with good Back-end Framework and good SQL**, incrementally
 
-![](https://yuml.me/5308ec31)
+1. As [build1.sql](src/build1.sql) ![](https://yuml.me/5308ec31)
+
+2. As [build2.sql](src/build2.sql) ![](https://yuml.me/5656b1e1)
 
 
-![](https://yuml.me/a6e58cfd)
-
-
-![](https://yuml.me/414cd342)
+3. ... ![](https://yuml.me/414cd342)
