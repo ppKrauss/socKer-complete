@@ -19,7 +19,7 @@ CREATE TABLE socker.agents_relation (
 	-- A agent1-agent2 standard relationship.
 	--
 	agid1 bigint NOT NULL REFERENCES socker.agent(agid),
-	agid1 bigint NOT NULL REFERENCES socker.agent(agid),
+	agid2 bigint NOT NULL REFERENCES socker.agent(agid),
 	ruletype bigint NOT NULL REFERENCES socker.ruletype(id),
 	info JSONb, -- standard annotations, on demand
 	UNIQUE(agid1,agid2,ruletype)
@@ -35,7 +35,7 @@ CREATE FUNCTION socker.isvalid_ruletype(
 		AND
 		CASE WHEN iscommutative THEN $1<$2 ELSE true END
 		AND
-		agtype1+*agtype*10 = ANY valid_pairs
+		(agtype2 + agtype1*10) = ANY valid_pairs
 	FROM (
 	SELECT iscommutative,  valid_pairs, 
 	  (SELECT agtype FROM socker.agent WHERE agid=$1) as agtype1,  
