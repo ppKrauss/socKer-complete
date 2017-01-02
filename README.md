@@ -40,4 +40,6 @@ To implement this model **with good back-end Framework and good SQL**, increment
 
 2. As [build2.sql](src/build2.sql) ![](https://yuml.me/5656b1e1)
 
-3.  As [build3.sql](src/build3.sql) ![](https://yuml.me/ed5190c1)
+3. As [build3.sql](src/build3.sql) ![](https://yuml.me/b48630a2)
+
+)
