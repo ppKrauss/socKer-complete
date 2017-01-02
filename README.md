@@ -26,7 +26,7 @@ The main enhances about previous didactic [socKer-simple](https://github.com/ppK
 * add agent-agent relationships (_AgentsRelation) that enhance the informations of the catalogue. 
 * add secondary relations: _AgentsRelation_'s _ContanctPoint_ for special cases (eg. [foaf:workplaceHomepage](http://xmlns.com/foaf/spec/#term_workplaceHomepage) as a _TelecomPoint_ of a Person-Organization relation); Place-ContactPoint relations as [ch:areaServed](https://schema.org/areaServed) (or [sc:validIn](https://schema.org/validIn), [sc:geographicArea](https://schema.org/geographicArea), etc.), extended for Place-Place relations (eg. [sc:containedInPlace](https://schema.org/containedInPlace)).
 
-Examples of agent-agent relationships:
+Examples of agent-agent relationships (modeled as **AgentsRelation** class):
 
 Relation type | *rule* examples (of SchemaOrg)
 ------------ | -------------
