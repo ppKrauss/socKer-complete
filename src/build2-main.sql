@@ -26,7 +26,7 @@ CREATE TABLE socker.contacthing (
 	thid serial NOT NULL PRIMARY KEY,
 	thtype int NOT NULL CHECK(socker.valid_enum(thtype,'thtype')), -- vals 1=telephon, 2=email, etc.
 	needcomplement boolean NOT NULL DEFAULT false,
-	kx_urn text NOT NULL CHECK(char_length(urn)<500),              -- cache from info
+	kx_urn text NOT NULL CHECK(char_length(kx_urn)<500),              -- cache from info
 	info JSONb NOT NULL CHECK (trim(info->>'val_main')>''),
 	UNIQUE(kx_urn)
 );    -- need final check for info
@@ -37,7 +37,7 @@ CREATE TABLE socker.contactpoint (
 	--
 	id serial NOT NULL PRIMARY KEY,
 	agid bigint NOT NULL REFERENCES socker.agent(agid),
-	thid bigint NOT NULL REFERENCES socker.telcom(thid),
+	thid bigint NOT NULL REFERENCES socker.contacthing(thid),
 	isowner boolean,                     	-- null=no information, true=is owner, false=is not. 
 	ismain boolean NOT NULL DEFAULT false,
 	rule int NOT NULL DEFAULT 0 CHECK(socker.valid_enum(rule,'ctrule')), -- undef, home, work, corresp, etc.
