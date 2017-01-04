@@ -1,0 +1,17 @@
+namespace,val,label,def_url
+agtype,0,indefinableAgent,http://xmlns.com/foaf/spec/#term_Agent
+agtype,1,Person,https://schema.org/Person
+agtype,2,Organization,https://www.wikidata.org/wiki/Q43229
+agtype,3,Group,http://xmlns.com/foaf/spec/#term_Group
+agtype,4,Robot,https://www.wikidata.org/wiki/Q2297769
+group-type,1,PerformingGroup,https://schema.org/PerformingGroup
+org-legaltype,1,NGO,https://schema.org/NGO
+org-legaltype,2,Corporation,https://schema.org/Corporation
+org-legaltype,3,GovernmentOrganization,https://schema.org/GovernmentOrganization
+org-type,1,Airline,https://schema.org/Airline
+org-type,2,EducationalOrganization,https://schema.org/EducationalOrganization
+org-type,3,PerformingOrganization,https://schema.org/PerformingGroup
+person-type,1,Patient,https://health-lifesci.schema.org/Patient
+rel-org-org,1,subOrganization,https://schema.org/subOrganization
+rel-org-org,2,LocalBusiness,https://schema.org/LocalBusiness
+rel-org-org,3,sponsor,https://schema.org/sponsor

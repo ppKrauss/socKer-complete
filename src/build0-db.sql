@@ -1,4 +1,4 @@
-CREATE DATABASE test
+CREATE DATABASE testdb
 WITH OWNER = postgres
         ENCODING = 'UTF8'
         TABLESPACE = pg_default
