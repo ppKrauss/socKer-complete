@@ -15,3 +15,11 @@ person-type,1,Patient,https://health-lifesci.schema.org/Patient
 rel-org-org,1,subOrganization,https://schema.org/subOrganization
 rel-org-org,2,LocalBusiness,https://schema.org/LocalBusiness
 rel-org-org,3,sponsor,https://schema.org/sponsor
+status-type,0,inactive,
+status-type,1,active,
+status-type,2,valid-inactive,
+status-type,3,valid-active,
+status-type,4,endorsed-invalid-inactive,
+status-type,5,endorsed-invalid-active,
+status-type,6,endorsed-valid-inactive,
+status-type,7,endorsed-valid-active,

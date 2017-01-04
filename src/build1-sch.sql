@@ -48,6 +48,7 @@ INSERT INTO socker.enum_item(namespace,val,label,def_url) VALUES
 	('_ns',4,'person-type',''),
 	('_ns',5,'group-type',''),
 	('_ns',6,'robot-type',''),
+	('_ns',7,'status-type',''),
 
 	('_ns',100,'rel-org-org',''), ('_ns',101,'rel-org-prs',''), ('_ns',102,'rel-org-grp',''),
 	('_ns',103,'rel-org-bot',''), ('_ns',104,'rel-org-ag',''),
