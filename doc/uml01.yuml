@@ -9,13 +9,13 @@
 
 [ContactThing]^---isa2dj[Place]
 [ContactThing]^---isa2dj[Telecom]
+[Place]0..1---*[ContactThing]
 
 [AgentsRelation|info JSONb|isValid()]*--->1[RuleType]
 [Agent]1----*[AgentsRelation]
 [Agent]1----*[AgentsRelation]
 
 [AgentsRelation|ruletype_accepts()]0..1---of1ov *[ContactPoint]
-[Place]0..1---*[ContactPoint]
 
 [Agent]^---isa1dj[Person]
 [Agent]^---isa1dj[Organization]
@@ -24,4 +24,3 @@
 
 [EnumItem|*id;namespace text;label text;val int;def_url text|isUnique(namespace-val);isUnique(namespace-label)]
 [EnumItem]^---isa[RuleType]
-
