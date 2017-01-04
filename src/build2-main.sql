@@ -14,8 +14,8 @@ CREATE TABLE socker.agent (
 	status smallint DEFAULT  '001'::bit(3)::int CHECK(socker.valid_enum(status,'status-type')),
      -- STATUS CONVENTION: bit3=not/endorsed, bit1=informal/formal, bit0=inactive/ative.
 	info JSONb NOT NULL CHECK (trim(info->>'name_main')>''),
-	kx_name text NOT NULL CHECK(char_length(name)<300),  -- cache from info, local name.
-	kx_urn text NOT NULL CHECK(char_length(urn)<500),    -- cache from info, like URN LEX.
+	kx_name text NOT NULL CHECK(char_length(kx_name)<300),  -- cache from info, local name.
+	kx_urn text NOT NULL CHECK(char_length(kx_urn)<500),    -- cache from info, like URN LEX.
 	UNIQUE(kx_urn)
 );    -- need final check for info
 
