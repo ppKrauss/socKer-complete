@@ -62,3 +62,7 @@ To develop a simple framework for
  * A framework for [back-end](https://en.wikipedia.org/wiki/Front_and_back_ends#Back-end_focused) and "data in bulk", not for end users.
 
 Incrementally: both, implementing this model and for user, adopting this model.
+
+## Prepare and installation
+
+See SQL prepare at [src/README.md](src/README.md).
