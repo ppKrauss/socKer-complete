@@ -33,11 +33,11 @@ With the flexible approach used in the project, the class/subclass relations can
 
 Some examples will be described as illustration. The complete list of definitions are in [this spreadsheet](https://docs.google.com/spreadsheets/d/1A_BcfWxYwn-eDLegI4odx6X1Mo5_XIMZ4OcYn7LDmaw/), relesead as [enum.csv](data/enum.csv), and transformed automatically into a table (`enum_item`), in the SQL initialization.
 
-Agent (agtype)| Agent (legaltype) | ContactThing (ctype)
-------------- | ----------------- | --------------
-1. _Organization_ is a [wd:Organization](https://www.wikidata.org/wiki/Q43229)<br> 2. _Person_ is a [sc:Person](https://schema.org/Person)<br/> 3. _Group_ is a [foaf:Group](http://xmlns.com/foaf/spec/#term_Group)<br/> 4. _Robot_ is a [wd:SoftwareAgent](https://www.wikidata.org/wiki/Q2297769)   |   1. [sc:Corporation](https://schema.org/Corporation),  <br> 2. [sc:GovernmentOrganization](https://schema.org/GovernmentOrganization)<br> 3. [sc:NGO](https://schema.org/NGO) <br> 4. ...     |    Telecom devices:<br/> 100. [sc:telephone](https://schema.org/telephone)<br> 102. [sc:email](https://schema.org/email)<br/> 104. [wd:HomePage](https://www.wikidata.org/wiki/Q11439)<br/> ... <br>Places: <br> 10. [sc:Country](http://schema.org/Country)<br> 12. [sc:City](http://schema.org/City)<br> 14. [sc:PostalAddress](http://schema.org/PostalAddress)<br>...
+Agent (agtype)| Agent (legaltype) | thype/Telecom | thype/Places
+------------- | ----------------- | ------------- | --------------
+1. _Organization_ is a [wd:Organization](https://www.wikidata.org/wiki/Q43229)<br> 2. _Person_ is a [sc:Person](https://schema.org/Person)<br/> 3. _Group_ is a [foaf:Group](http://xmlns.com/foaf/spec/#term_Group)<br/> 4. _Robot_ is a [wd:SoftwareAgent](https://www.wikidata.org/wiki/Q2297769)   |   1. [sc:Corporation](https://schema.org/Corporation),  <br> 2. [sc:GovernmentOrganization](https://schema.org/GovernmentOrganization)<br> 3. [sc:NGO](https://schema.org/NGO) <br> 4. ...     |  100. [sc:telephone](https://schema.org/telephone)<br> 102. [sc:email](https://schema.org/email)<br/> 104. [wd:HomePage](https://www.wikidata.org/wiki/Q11439)<br/> ... | 10. [sc:Country](http://schema.org/Country)<br> 12. [sc:City](http://schema.org/City)<br> 14. [sc:PostalAddress](http://schema.org/PostalAddress)<br>...
 
-Note: the [sc:Organization](https://schema.org/Organization) is equivalent to [wd:SocialGroup](https://www.wikidata.org/wiki/Q874405), not  *wd:Orgaizatin*. So take care wih it and all its chieldren (see thematic variants), that have semantic intersections with Group variants.
+Note: the [sc:Organization](https://schema.org/Organization) is equivalent to [wd:SocialGroup](https://www.wikidata.org/wiki/Q874405), not  *wd:Organization*. So take care wih it and all its chieldren (see thematic variants), that have semantic intersections with Group variants.
 
 ### Agent-Agent relationships
 Modeled as _AgentsRelation_ class:
