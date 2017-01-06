@@ -3,7 +3,7 @@
 [RuleType|legaltype ENUM;iscommutative;valid_pairs array;info JSONb]
 [ContactPoint|*id;ismain;info JSONb|isValid();validComplement()]
 
-[Agent]0..1---of1ov *[ContactPoint]
+[Agent]0..1<---of1ov *[ContactPoint]
 [ContactPoint]^---isa[Ownership]
 [ContactPoint]*--->1[ContactThing]
 
@@ -15,7 +15,7 @@
 [Agent]1----*[AgentsRelation]
 [Agent]1----*[AgentsRelation]
 
-[AgentsRelation|ruletype_accepts()]0..1---of1ov *[ContactPoint]
+[AgentsRelation|ruletype_accepts()]0..1<---of1ov *[ContactPoint]
 
 [Agent]^---isa1dj[Person]
 [Agent]^---isa1dj[Organization]
