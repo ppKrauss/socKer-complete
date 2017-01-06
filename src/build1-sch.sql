@@ -5,6 +5,9 @@
 DROP SCHEMA IF EXISTS socker CASCADE;
 CREATE SCHEMA socker;
 
+CREATE EXTENSION file_fdw;  -- for CSV import
+CREATE SERVER files FOREIGN DATA WRAPPER file_fdw;
+
 -----------
 -- PREPARE:
 

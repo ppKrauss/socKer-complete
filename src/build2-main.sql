@@ -31,6 +31,11 @@ CREATE TABLE socker.contacthing (
 	UNIQUE(kx_urn)
 );    -- need final check for info
 
+CREATE VIEW socker.contactpoint_full AS
+   SELECT cp.*, ct.*
+	 FROM socker.contactpoint cp NATURAL JOIN socker.contacthing ct
+;
+
 CREATE TABLE socker.contactpoint (
 	--
 	-- See UML, ContactPoint and https://schema.org/Thing
@@ -38,12 +43,12 @@ CREATE TABLE socker.contactpoint (
 	id serial NOT NULL PRIMARY KEY,
 	agid bigint NOT NULL REFERENCES socker.agent(agid),
 	thid bigint NOT NULL REFERENCES socker.contacthing(thid),
-	isowner boolean,                     	-- null=no information, true=is owner, false=is not. 
+	isowner boolean,                     	-- null=no information, true=is owner, false=is not.
 	ismain boolean NOT NULL DEFAULT false,
 	rule int NOT NULL DEFAULT 0 CHECK(socker.valid_enum(rule,'ctrule')), -- undef, home, work, corresp, etc.
-	kx_urn text NOT NULL DEFAULT '', -- cache for normalized complement.
-	info JSONb CHECK (trim(info->>'complement')>''), -- NULL for no complement
-	UNIQUE(agid,thid,kx_urn)
+	kx_complt text NOT NULL DEFAULT '', -- cache for normalized complement, like an URN
+	infopt JSONb CHECK (trim(info->>'complement')>''), -- info, NULL for no complement.
+	UNIQUE(agid,thid,kx_complt)
 );    -- need final check for info
 
 
@@ -56,12 +61,12 @@ $func$ LANGUAGE SQL IMMUTABLE;
 
 CREATE FUNCTION socker.make_agname(JSONb, agtype integer) RETURNS text AS $func$
 
-	SELECT $1->>'name_main' || COALESCE(' ' || CASE 
+	SELECT $1->>'name_main' || COALESCE(' ' || CASE
 		   -- WHEN $2=2 THEN $1->>'name_suffix' -- Organization
 		   WHEN $2=1 THEN $1->>'name_surname' -- Person
 		   ELSE $1->>'name_suffix'
 		END, '')
-	;  
+	;
 $func$ LANGUAGE SQL IMMUTABLE;
 
 CREATE FUNCTION socker.make_urn(
@@ -82,6 +87,17 @@ CREATE FUNCTION socker.make_urn(
 		   WHEN $2=4 THEN make_group_urn($1) -- can be null
 		   ELSE CASE WHEN $4 THEN NULL ELSE 'ERROR_ON_MAKE_URN' END
 	END
-	;  
+	;
 $func$ LANGUAGE SQL IMMUTABLE;
 
+
+CREATE FUNCTION socker.get_agtype(
+	--
+	-- Gets from agent its agtype with option for zero when informal or inactive.
+	--
+	p_agid bigint,                 -- input agent ID
+	p_check bolean DEFAULT false   -- flag to check status
+) RETURNS int AS $func$
+	SELECT  CASE WHEN $2 AND NOT(status&3) THEN 0 ELSE agtype END
+	FROM socker.agent WHERE agid=$1;
+$func$ LANGUAGE SQL IMMUTABLE;

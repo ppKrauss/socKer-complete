@@ -23,6 +23,8 @@ psql -h localhost -U postgres testdb -c \
 ```
 The SQL *COPY* command INSERTs contents from [enum.csv](../data/enum.csv).
 
+NOTE: Another way to get CSV files, avoiding table copies to populate SQL JSON fields, is to [use `EXTENSION file_fdw` as explained here](http://stackoverflow.com/a/41473308/287948).
+
 ##  Step2 - main tables and constraints
 
 The SQL script [build2-main.sql](build2-main.sql) builds the main tables and add main constrains.
@@ -30,3 +32,12 @@ The SQL script [build2-main.sql](build2-main.sql) builds the main tables and add
 ```
 psql -h localhost -U postgres testdb < src/build2-main.sql
 ```
+
+
+CREATE FOREIGN TABLE socker.tmp1 (
+  namespace text,val int,label text,def_url text, info text
+) SERVER files OPTIONS (
+  filename '/home/peter/gits/socKer-complete/data/enum.csv',
+	format 'csv',
+	header 'true'
+);  -- see

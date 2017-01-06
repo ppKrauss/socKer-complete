@@ -18,7 +18,7 @@ The main enhances about previous didactic [socKer-simple](https://github.com/ppK
 * add agent-agent relationships (_AgentsRelation_) that enhance the informations of the catalogue.
 * add secondary relations: _AgentsRelation_'s _ContanctPoint_ for special cases (eg. [foaf:workplaceHomepage](http://xmlns.com/foaf/spec/#term_workplaceHomepage) as a _TelecomPoint_ of a Person-Organization relation); Place-ContactPoint relations as [ch:areaServed](https://schema.org/areaServed) (or [sc:validIn](https://schema.org/validIn), [sc:geographicArea](https://schema.org/geographicArea), etc.), extended for Place-Place relations (eg. [sc:containedInPlace](https://schema.org/containedInPlace)).
 
-## The model
+## THE MODEL
 
 [![](https://yuml.me/381b3cf8)](https://yuml.me/381b3cf8)
 
@@ -27,18 +27,17 @@ LEGEND: _isa_ and _ispart_ in class-inheritances denotes "is a" and "is part of"
 
 See [build1.sql](src/build1.sql)
 
-## Types and variations
-Some examples will be described as illustration. The complete list of definitions are in [this spreadsheet](https://docs.google.com/spreadsheets/d/1A_BcfWxYwn-eDLegI4odx6X1Mo5_XIMZ4OcYn7LDmaw/) and will expessed as EnumItem's.
+### Inheritances and ENUMs
+
+With the flexible approach used in the project, the class/subclass relations can be modeled by structure or simply by a [enumerated type](https://en.wikipedia.org/wiki/Enumerated_type) choice (ENUM). The structure and validation of JSON can be performed in runtime, only indicating the ENUM type.
+
+Some examples will be described as illustration. The complete list of definitions are in [this spreadsheet](https://docs.google.com/spreadsheets/d/1A_BcfWxYwn-eDLegI4odx6X1Mo5_XIMZ4OcYn7LDmaw/), relesead as [enum.csv](data/enum.csv), and transformed automatically into a table (`enum_item`), in the SQL initialization.
 
 Agent (agtype)| Agent (legaltype) | ContactThing (ctype)
 ------------- | ----------------- | --------------
-1. _Organization_ is a [wd:Organization](https://www.wikidata.org/wiki/Q43229)<br> 2. _Person_ is a [sc:Person](https://schema.org/Person)<br/> 3. _Group_ is a [foaf:Group](http://xmlns.com/foaf/spec/#term_Group)<br/> 4. _Robot_ is a [wd:SoftwareAgent](https://www.wikidata.org/wiki/Q2297769)   |   1. [Corporation](https://schema.org/Corporation),  <br> 2. [GovernmentOrganization](https://schema.org/GovernmentOrganization)<br> 3. [NGO](https://schema.org/NGO) <br> 4. ...     |    xxxxx
+1. _Organization_ is a [wd:Organization](https://www.wikidata.org/wiki/Q43229)<br> 2. _Person_ is a [sc:Person](https://schema.org/Person)<br/> 3. _Group_ is a [foaf:Group](http://xmlns.com/foaf/spec/#term_Group)<br/> 4. _Robot_ is a [wd:SoftwareAgent](https://www.wikidata.org/wiki/Q2297769)   |   1. [sc:Corporation](https://schema.org/Corporation),  <br> 2. [sc:GovernmentOrganization](https://schema.org/GovernmentOrganization)<br> 3. [sc:NGO](https://schema.org/NGO) <br> 4. ...     |    Telecom devices:<br/> 100. [sc:telephone](https://schema.org/telephone)<br> 102. [sc:email](https://schema.org/email)<br/> 104. [wd:HomePage](https://www.wikidata.org/wiki/Q11439)<br/> ... <br>Places: <br> 10. [sc:Country](http://schema.org/Country)<br> 12. [sc:City](http://schema.org/City)<br> 14. [sc:PostalAddress](http://schema.org/PostalAddress)<br>...
 
 Note: the [sc:Organization](https://schema.org/Organization) is equivalent to [wd:SocialGroup](https://www.wikidata.org/wiki/Q874405), not  *wd:Orgaizatin*. So take care wih it and all its chieldren (see thematic variants), that have semantic intersections with Group variants.
-
-
-### ContactPoints
-...
 
 ### Agent-Agent relationships
 Modeled as _AgentsRelation_ class:
@@ -50,15 +49,14 @@ Organization-Person   | [founder](https://schema.org/founder), [employee](https:
 Person-Person | [children](https://schema.org/children), ...
 Agent-Agent | [follows](https://schema.org/follows), ...
 
-## Objective
+## OBJECTIVE
+
 To develop a simple framework for
 
- * Stable and curated data.
+ * Store stable and curated data: [digital preservation](https://en.wikipedia.org/wiki/Digital_preservation) of original data (like [LOCKSS](https://en.wikipedia.org/wiki/LOCKSS)) and subsequent data processing (like *git commit* or [Mediawiki's page history](https://en.wikipedia.org/wiki/Help:Page_history)).
 
- * [Digital preservation](https://en.wikipedia.org/wiki/Digital_preservation) of original data (like [LOCKSS](https://en.wikipedia.org/wiki/LOCKSS)) and subsequent data processing (like *git commit* or [Mediawiki's page history](https://en.wikipedia.org/wiki/Help:Page_history)).
+ * Complete mappeding: adequate [object-relational mapping](https://en.wikipedia.org/wiki/Object-relational_mapping) and complete [semantic mapping](https://en.wikipedia.org/wiki/Ontology_alignment).
 
- * Complete mappeding:  [Object-Relational mapping](https://en.wikipedia.org/wiki/Object-relational_mapping) and [semantic mapping](https://en.wikipedia.org/wiki/Ontology_alignment).
-
- * Back-end and "data in bulk", not for end users.
+ * A framework for [back-end](https://en.wikipedia.org/wiki/Front_and_back_ends#Back-end_focused) and "data in bulk", not for end users.
 
 Incrementally,  implementing this model
