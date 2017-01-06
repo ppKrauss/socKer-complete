@@ -1,11 +1,12 @@
+First steps... Only creating the database structure.
 
+## Step0 - clone git and start database
 
-## Step0 - create a database
-
-Build an UTF-8 database. As ilustration we are using standard PostgreSQL user,
+Clone de project and build an UTF-8 database. As ilustration we are using standard PostgreSQL user,
 
 ```
-cd socKer-complete  # the git clone folder
+git clone https://github.com/ppKrauss/socKer-complete.git
+cd socKer-complete
 psql -h localhost -U postgres < src/build0-db.sql
 ```
 Now you can use the `testdb` database. Change [build0-db.sql](build0-db.sql) to preffered name, or use your production name (instead `testdb`) in the next steps and terminal commands.
