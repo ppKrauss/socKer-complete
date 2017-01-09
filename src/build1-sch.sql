@@ -75,6 +75,12 @@ CREATE FOREIGN TABLE socker.csv_tmp1 (
     format 'csv',
     header 'true'
 );
+CREATE FOREIGN TABLE socker.csv_tmp2 (
+  info text
+) SERVER files OPTIONS (
+  filename '/tmp/pgstd_socKer_file2.txt', -- a standard elected one
+    format 'text'
+);
 
 ----------------------
 -- IMPORTING CSV file:
@@ -82,4 +88,9 @@ CREATE FOREIGN TABLE socker.csv_tmp1 (
 INSERT INTO socker.enum_item(namespace,val,label,def_url,info)
   SELECT namespace,val,label,def_url,info::JSONb
   FROM socker.csv_tmp1
+;
+
+--INSERT INTO socker.agent(?)
+  SELECT jsonb_array_elements(info::JSONb)
+  FROM socker.csv_tmp2
 ;

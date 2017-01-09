@@ -1,0 +1,271 @@
+[
+   {
+      "version": "3.0",
+      "fn": "Forrest Gump",
+      "org": "Bubba Gump Shrimp Co.",
+      "title": "Shrimp Man",
+      "tel": [
+         {
+            "meta": {
+               "TYPE": "WORK,VOICE"
+            },
+            "value": "(111) 555-1212"
+         },
+         {
+            "meta": {
+               "TYPE": "HOME,VOICE,PREF"
+            },
+            "value": "(404) 666-1212"
+         }
+      ],
+      "adr": [
+         {
+            "meta": {
+               "TYPE": "WORK,PREF"
+            },
+            "value": [
+               "",
+               "",
+               "100 Waters Edge",
+               "Baytown",
+               "LA",
+               "30314",
+               "United States of America"
+            ]
+         },
+         {
+            "meta": {
+               "TYPE": "HOME"
+            },
+            "value": [
+               "",
+               "",
+               "42 Plantation St.",
+               "Baytown",
+               "LA",
+               "30314",
+               "United States of America"
+            ]
+         }
+      ],
+      "label": [
+         {
+            "meta": {
+               "TYPE": "WORK,PREF"
+            },
+            "value": [
+               "100 Waters Edge\nBaytown, LA 30314\nUnited States ofAmerica"
+            ]
+         },
+         {
+            "meta": {
+               "TYPE": "HOME"
+            },
+            "value": [
+               "42 Plantation St.\nBaytown, LA 30314\nUnited States of America"
+            ]
+         }
+      ],
+      "email": "forrestgump@example.com",
+      "familyName": "Gump",
+      "givenName": "Forrest",
+      "honorificPrefix": "Mr."
+   },
+   {
+      "version": "3.0",
+      "fn": "John Doe",
+      "familyName": "Doe",
+      "givenName": "John",
+      "honorificPrefix": "Mr"
+   },
+   {
+      "version": "3.0",
+      "profile": "VCARD",
+      "class": "PUBLIC",
+      "source": [
+         {
+            "meta": {
+               "TYPE": "",
+               "VALUE": "uri"
+            },
+            "value": [
+               "http://example.org/example.vcf"
+            ]
+         }
+      ],
+      "fn": "John Doe",
+      "nickname": "Johnny,Dr Q",
+      "org": "Example Organization;Example Department;Example Sub-Department;ExampleOffice",
+      "logo": [
+         {
+            "meta": {
+               "TYPE": "",
+               "VALUE": "uri"
+            },
+            "value": [
+               "http://example.org/example.svg"
+            ]
+         }
+      ],
+      "title": "Assistant assessor",
+      "url": "http://example.org/example-department/example-sub-department/example-office",
+      "email": [
+         {
+            "meta": {
+               "TYPE": "WORK"
+            },
+            "value": [
+               "jdoe+work-related@example.org"
+            ]
+         }
+      ],
+      "tel": [
+         {
+            "meta": {
+               "TYPE": "WORK"
+            },
+            "value": "+1234567890"
+         },
+         {
+            "meta": {
+               "TYPE": "WORK"
+            },
+            "value": "+0123456789"
+         }
+      ],
+      "adr": "Post office box 1;West wing;1 Some Street;Tinytown;Schwarzwald;12345;Fantasia",
+      "label": "Pb 1\n1 Some Street\n12345 Tinytown\nFantasia",
+      "photo": [
+         {
+            "meta": {
+               "TYPE": "",
+               "VALUE": "uri"
+            },
+            "value": "http://example.org/jdoe.jpg"
+         }
+      ],
+      "note": "Who is this guy anyway? He looks like a double agent from the eighties, talks like a loon, and reads comics when he should be working.",
+      "geo": "1.2345;6.7890",
+      "categories": "Worker drones, Finance, Marketing",
+      "familyName": "Doe",
+      "givenName": "John",
+      "additionalName": "Quentin",
+      "honorificPrefix": "Mr,Dr",
+      "honorificSuffix": "Esq.",
+      "warning-DISCARD": [
+         "TZ:+10:30"
+      ]
+   },
+   {
+      "version": "3.0",
+      "fn": "dr. Admil dos Santos Delgadino",
+      "tel": [
+         {
+            "meta": {
+               "TYPE": "CELL"
+            },
+            "value": "+55-16-3306-4686"
+         }
+      ],
+      "adr": [
+         {
+            "meta": {
+               "TYPE": "HOME"
+            },
+            "value": [
+               "",
+               "",
+               "RUA CAPITAO ADAO P. S. C., 1380",
+               "São Carlos",
+               "SP",
+               "13560000",
+               "Brazil"
+            ]
+         }
+      ],
+      "note": "PEDIATRIA",
+      "familyName": "Delgadino",
+      "givenName": "Admil",
+      "additionalName": "dos Santos",
+      "honorificPrefix": "dr."
+   },
+   {
+      "version": "3.0",
+      "fn": "dr. Adrian Meireles Del Munte",
+      "email": [
+         {
+            "meta": {
+               "TYPE": "WORK"
+            },
+            "value": [
+               "adrian.munte@gmail.com.br"
+            ]
+         }
+      ],
+      "tel": [
+         {
+            "meta": {
+               "TYPE": "CELL"
+            },
+            "value": "9364-2330"
+         }
+      ],
+      "adr": [
+         {
+            "meta": {
+               "TYPE": "HOME"
+            },
+            "value": [
+               "",
+               "",
+               "av. dr. Carlos Botelho, 185",
+               "São Carlos",
+               "SP",
+               "",
+               ""
+            ]
+         }
+      ],
+      "note": "NEUROCIRURGIA",
+      "familyName": "Del Munte",
+      "givenName": "Adrian",
+      "additionalName": "M.",
+      "honorificPrefix": "dr."
+   },
+   {
+      "version": "3.0",
+      "fn": "Adriano Azurro",
+      "email": [
+         {
+            "meta": {
+               "TYPE": "INTERNET"
+            },
+            "value": [
+               "azurro.af@mailme.org"
+            ]
+         }
+      ],
+      "tel": [
+         {
+            "meta": {
+               "TYPE": "CELL,PREF"
+            },
+            "value": "+55 (16) 9275-1795"
+         },
+         {
+            "meta": {
+               "TYPE": "HOME"
+            },
+            "value": "+55 (11) 2495-4200"
+         }
+      ],
+      "familyName": "Azurro",
+      "givenName": "Adriano",
+      "warning-DISCARD": [
+         "item1.ADR:;;+55 (14) 9601-1250;;;;",
+         "item1.X-ABLabel:celular",
+         "item2.URL:http\\://www.google.com/profiles/205200109991227511123",
+         "item2.X-ABLabel:PROFILE"
+      ]
+   }
+]

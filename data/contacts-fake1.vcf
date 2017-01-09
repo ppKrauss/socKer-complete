@@ -1,0 +1,84 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Gump;Forrest;;Mr.;
+FN:Forrest Gump
+ORG:Bubba Gump Shrimp Co.
+TITLE:Shrimp Man
+TEL;TYPE=WORK,VOICE:(111) 555-1212
+TEL;TYPE=HOME,VOICE,PREF:(404) 666-1212
+ADR;TYPE=WORK,PREF:;;100 Waters Edge;Baytown;LA;30314;United States of Amer
+ ica
+LABEL;TYPE=WORK,PREF:100 Waters Edge\nBaytown\, LA 30314\nUnited States of
+ America
+ADR;TYPE=HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America
+LABEL;TYPE=HOME:42 Plantation St.\nBaytown\, LA 30314\nUnited States of Ame
+ rica
+EMAIL:forrestgump@example.com
+END:VCARD
+
+
+BEGIN:VCARD
+VERSION:3.0
+N:Doe;John;;Mr;
+FN:John Doe
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+PROFILE:VCARD
+CLASS:PUBLIC
+SOURCE;VALUE=uri:http://example.org/example.vcf
+N:Doe;John;Quentin;Mr,Dr;Esq.
+FN:John Doe
+NICKNAME:Johnny,Dr Q
+ORG:Example Organization;Example Department;Example Sub-Department;Example
+ Office
+LOGO;VALUE=uri:http://example.org/example.svg
+TITLE:Assistant assessor
+URL:http://example.org/example-department/example-sub-department/example-of
+ fice
+EMAIL;TYPE=INTERNET;TYPE=PREF;TYPE=WORK:jdoe+work-related@example.org
+TEL;TYPE=VOICE;TYPE=PREF;TYPE=MSG;TYPE=WORK:+1234567890
+TEL;TYPE=FAX;TYPE=WORK:+0123456789
+ADR:Post office box 1;West wing;1 Some Street;Tinytown;Schwarzwald;12345;Fa
+ ntasia
+LABEL:Pb 1\n1 Some Street\n12345 Tinytown\nFantasia
+PHOTO;VALUE=uri:http://example.org/jdoe.jpg
+NOTE:Who is this guy anyway? He looks like a double agent from the eighties
+ \, talks like a loon\, and reads comics when he should be working.
+TZ:+10:30
+GEO:1.2345;6.7890
+CATEGORIES:Worker drones\, Finance\, Marketing
+END:VCARD
+
+
+BEGIN:VCARD
+VERSION:3.0
+FN:dr. Admil dos Santos Delgadino
+N:Delgadino;Admil;dos Santos;dr.;
+TEL;TYPE=CELL:+55-16-3306-4686
+ADR;TYPE=HOME:;;RUA CAPITAO ADAO P. S. C.\, 1380;São Carlos;SP;13560000;Brazil
+NOTE:PEDIATRIA
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:dr. Adrian Meireles Del Munte
+N:Del Munte;Adrian;M.;dr.;
+EMAIL;TYPE=INTERNET;TYPE=WORK:adrian.munte@gmail.com.br
+TEL;TYPE=CELL:9364-2330
+ADR;TYPE=HOME:;;av. dr. Carlos Botelho\, 185;São Carlos;SP;;
+NOTE:NEUROCIRURGIA
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Adriano Azurro
+N:Azurro;Adriano;;;
+EMAIL;TYPE=INTERNET:azurro.af@mailme.org
+TEL;TYPE=CELL,PREF:+55 (16) 9275-1795
+TEL;TYPE=HOME:+55 (11) 2495-4200
+item1.ADR:;;+55 (14) 9601-1250;;;;
+item1.X-ABLabel:celular
+item2.URL:http\://www.google.com/profiles/205200109991227511123
+item2.X-ABLabel:PROFILE
+END:VCARD
