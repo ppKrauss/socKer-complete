@@ -6,67 +6,66 @@
       "title": "Shrimp Man",
       "tel": [
          {
-            "meta": {
-               "TYPE": "WORK,VOICE"
-            },
-            "value": "(111) 555-1212"
+            "value": "(111) 555-1212",
+            "type": [
+               "work",
+               "voice"
+            ]
          },
          {
-            "meta": {
-               "TYPE": "HOME,VOICE,PREF"
-            },
-            "value": "(404) 666-1212"
+            "value": "(404) 666-1212",
+            "type": [
+               "home",
+               "voice",
+               "pref"
+            ]
          }
       ],
       "adr": [
          {
-            "meta": {
-               "TYPE": "WORK,PREF"
-            },
-            "value": [
-               "",
-               "",
-               "100 Waters Edge",
-               "Baytown",
-               "LA",
-               "30314",
-               "United States of America"
-            ]
+            "type": [
+               "work",
+               "pref"
+            ],
+            "pobox": "",
+            "ext": "",
+            "streetAddress": "100 Waters Edge",
+            "city": "Baytown",
+            "state": "LA",
+            "postalCode": "30314",
+            "addressCountry": "United States of America"
          },
          {
-            "meta": {
-               "TYPE": "HOME"
-            },
-            "value": [
-               "",
-               "",
-               "42 Plantation St.",
-               "Baytown",
-               "LA",
-               "30314",
-               "United States of America"
-            ]
+            "type": [
+               "home"
+            ],
+            "pobox": "",
+            "ext": "",
+            "streetAddress": "42 Plantation St.",
+            "city": "Baytown",
+            "state": "LA",
+            "postalCode": "30314",
+            "addressCountry": "United States of America"
          }
       ],
       "label": [
          {
-            "meta": {
-               "TYPE": "WORK,PREF"
-            },
-            "value": [
-               "100 Waters Edge\nBaytown, LA 30314\nUnited States ofAmerica"
+            "value": "100 Waters Edge\nBaytown, LA 30314\nUnited States ofAmerica",
+            "type": [
+               "work",
+               "pref"
             ]
          },
          {
-            "meta": {
-               "TYPE": "HOME"
-            },
-            "value": [
-               "42 Plantation St.\nBaytown, LA 30314\nUnited States of America"
+            "value": "42 Plantation St.\nBaytown, LA 30314\nUnited States of America",
+            "type": [
+               "home"
             ]
          }
       ],
-      "email": "forrestgump@example.com",
+      "email": [
+         "forrestgump@example.com"
+      ],
       "familyName": "Gump",
       "givenName": "Forrest",
       "honorificPrefix": "Mr."
@@ -82,68 +81,66 @@
       "version": "3.0",
       "profile": "VCARD",
       "class": "PUBLIC",
-      "source": [
-         {
-            "meta": {
-               "TYPE": "",
-               "VALUE": "uri"
-            },
-            "value": [
-               "http://example.org/example.vcf"
-            ]
-         }
-      ],
+      "source": {
+         "meta": {
+            "TYPE": "",
+            "VALUE": "uri"
+         },
+         "value": [
+            "http://example.org/example.vcf"
+         ]
+      },
       "fn": "John Doe",
       "nickname": "Johnny,Dr Q",
       "org": "Example Organization;Example Department;Example Sub-Department;ExampleOffice",
-      "logo": [
-         {
-            "meta": {
-               "TYPE": "",
-               "VALUE": "uri"
-            },
-            "value": [
-               "http://example.org/example.svg"
-            ]
-         }
-      ],
+      "logo": {
+         "meta": {
+            "TYPE": "",
+            "VALUE": "uri"
+         },
+         "value": [
+            "http://example.org/example.svg"
+         ]
+      },
       "title": "Assistant assessor",
       "url": "http://example.org/example-department/example-sub-department/example-office",
       "email": [
          {
-            "meta": {
-               "TYPE": "WORK"
-            },
-            "value": [
-               "jdoe+work-related@example.org"
+            "value": "jdoe+work-related@example.org",
+            "type": [
+               "work"
             ]
          }
       ],
       "tel": [
          {
-            "meta": {
-               "TYPE": "WORK"
-            },
-            "value": "+1234567890"
+            "value": "+1234567890",
+            "type": [
+               "work"
+            ]
          },
          {
-            "meta": {
-               "TYPE": "WORK"
-            },
-            "value": "+0123456789"
+            "value": "+0123456789",
+            "type": [
+               "work"
+            ]
          }
       ],
-      "adr": "Post office box 1;West wing;1 Some Street;Tinytown;Schwarzwald;12345;Fantasia",
-      "label": "Pb 1\n1 Some Street\n12345 Tinytown\nFantasia",
-      "photo": [
-         {
-            "meta": {
-               "TYPE": "",
-               "VALUE": "uri"
-            },
-            "value": "http://example.org/jdoe.jpg"
-         }
+      "adr": [
+         "Post office box 1;West wing;1 Some Street;Tinytown;Schwarzwald;12345;Fantasia"
       ],
+      "label": [
+         "Pb 1\n1 Some Street\n12345 Tinytown\nFantasia"
+      ],
+      "photo": {
+         "meta": {
+            "TYPE": "",
+            "VALUE": "uri"
+         },
+         "value": [
+            "http://example.org/jdoe.jpg"
+         ]
+      },
       "note": "Who is this guy anyway? He looks like a double agent from the eighties, talks like a loon, and reads comics when he should be working.",
       "geo": "1.2345;6.7890",
       "categories": "Worker drones, Finance, Marketing",
@@ -161,26 +158,30 @@
       "fn": "dr. Admil dos Santos Delgadino",
       "tel": [
          {
-            "meta": {
-               "TYPE": "CELL"
-            },
-            "value": "+55-16-3306-4686"
+            "value": "+55-16-3306-4686",
+            "type": [
+               "work"
+            ]
+         },
+         {
+            "value": "+55-11-98106-1611",
+            "type": [
+               "cell"
+            ]
          }
       ],
       "adr": [
          {
-            "meta": {
-               "TYPE": "HOME"
-            },
-            "value": [
-               "",
-               "",
-               "RUA CAPITAO ADAO P. S. C., 1380",
-               "São Carlos",
-               "SP",
-               "13560000",
-               "Brazil"
-            ]
+            "type": [
+               "home"
+            ],
+            "pobox": "",
+            "ext": "",
+            "streetAddress": "RUA CAPITAO ADAO P. S. C., 1380",
+            "city": "São Carlos",
+            "state": "SP",
+            "postalCode": "13560000",
+            "addressCountry": "Brazil"
          }
       ],
       "note": "PEDIATRIA",
@@ -194,36 +195,38 @@
       "fn": "dr. Adrian Meireles Del Munte",
       "email": [
          {
-            "meta": {
-               "TYPE": "WORK"
-            },
-            "value": [
-               "adrian.munte@gmail.com.br"
+            "value": "adrian.home@ggmail.com.br",
+            "type": [
+               "home"
+            ]
+         },
+         {
+            "value": "adrian.munte@gnail.com.br",
+            "type": [
+               "work"
             ]
          }
       ],
       "tel": [
          {
-            "meta": {
-               "TYPE": "CELL"
-            },
-            "value": "9364-2330"
+            "value": "9364-2330",
+            "type": [
+               "cell"
+            ]
          }
       ],
       "adr": [
          {
-            "meta": {
-               "TYPE": "HOME"
-            },
-            "value": [
-               "",
-               "",
-               "av. dr. Carlos Botelho, 185",
-               "São Carlos",
-               "SP",
-               "",
-               ""
-            ]
+            "type": [
+               "home"
+            ],
+            "pobox": "",
+            "ext": "",
+            "streetAddress": "av. dr. Carlos Botelho, 185",
+            "city": "São Carlos",
+            "state": "SP",
+            "postalCode": "",
+            "addressCountry": ""
          }
       ],
       "note": "NEUROCIRURGIA",
@@ -237,26 +240,25 @@
       "fn": "Adriano Azurro",
       "email": [
          {
-            "meta": {
-               "TYPE": "INTERNET"
-            },
-            "value": [
-               "azurro.af@mailme.org"
+            "value": "azurro.af@mailme.org",
+            "type": [
+               "internet"
             ]
          }
       ],
       "tel": [
          {
-            "meta": {
-               "TYPE": "CELL,PREF"
-            },
-            "value": "+55 (16) 9275-1795"
+            "value": "+55 (16) 9275-1795",
+            "type": [
+               "cell",
+               "pref"
+            ]
          },
          {
-            "meta": {
-               "TYPE": "HOME"
-            },
-            "value": "+55 (11) 2495-4200"
+            "value": "+55 (11) 2495-4200",
+            "type": [
+               "home"
+            ]
          }
       ],
       "familyName": "Azurro",

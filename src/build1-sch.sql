@@ -91,6 +91,9 @@ INSERT INTO socker.enum_item(namespace,val,label,def_url,info)
 ;
 
 --INSERT INTO socker.agent(?)
-  SELECT jsonb_array_elements(info::JSONb)
-  FROM socker.csv_tmp2
+-- usar formato vCard padrão
+  WITH t AS (
+		SELECT jsonb_array_elements(info::JSONb) as jvc
+  	FROM socker.csv_tmp2
+) SELECT jvc->>'' FROM t;
 ;

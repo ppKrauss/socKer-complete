@@ -56,7 +56,8 @@ BEGIN:VCARD
 VERSION:3.0
 FN:dr. Admil dos Santos Delgadino
 N:Delgadino;Admil;dos Santos;dr.;
-TEL;TYPE=CELL:+55-16-3306-4686
+TEL;TYPE=WORK:+55-16-3306-4686
+TEL;TYPE=CELL:+55-11-98106-1611
 ADR;TYPE=HOME:;;RUA CAPITAO ADAO P. S. C.\, 1380;São Carlos;SP;13560000;Brazil
 NOTE:PEDIATRIA
 END:VCARD
@@ -64,7 +65,8 @@ BEGIN:VCARD
 VERSION:3.0
 FN:dr. Adrian Meireles Del Munte
 N:Del Munte;Adrian;M.;dr.;
-EMAIL;TYPE=INTERNET;TYPE=WORK:adrian.munte@gmail.com.br
+EMAIL;TYPE=HOME:adrian.home@ggmail.com.br
+EMAIL;TYPE=INTERNET;TYPE=WORK:adrian.munte@gnail.com.br
 TEL;TYPE=CELL:9364-2330
 ADR;TYPE=HOME:;;av. dr. Carlos Botelho\, 185;São Carlos;SP;;
 NOTE:NEUROCIRURGIA
