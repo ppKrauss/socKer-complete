@@ -71,7 +71,7 @@ CREATE SERVER files FOREIGN DATA WRAPPER file_fdw;
 CREATE FOREIGN TABLE socker.csv_tmp1 (
   namespace text,val int,label text,def_url text, info text
 ) SERVER files OPTIONS (
-  filename '/tmp/pgstd_socKer_file1.csv', -- a standard elected one
+  filename '/tmp/pgstd_socKer_file1.csv', -- a standard elected one (eg. /usr/local)
     format 'csv',
     header 'true'
 );
@@ -83,17 +83,9 @@ CREATE FOREIGN TABLE socker.csv_tmp2 (
 );
 
 ----------------------
--- IMPORTING CSV file:
+-- IMPORTING CSV config file:
 
 INSERT INTO socker.enum_item(namespace,val,label,def_url,info)
   SELECT namespace,val,label,def_url,info::JSONb
   FROM socker.csv_tmp1
-;
-
---INSERT INTO socker.agent(?)
--- usar formato vCard padrão
-  WITH t AS (
-		SELECT jsonb_array_elements(info::JSONb) as jvc
-  	FROM socker.csv_tmp2
-) SELECT jvc->>'' FROM t;
 ;

@@ -1,10 +1,8 @@
 /**
- * Convert vCard fake files to JSON files.
-FALTA remover excessos e ficar com o basico no tel, adr e email.
-tel[0].pref, tel[0].value, etc.
-ORG é sempre "Organization":{name:value}
- * Need previous         #npm install vcard-json
+ * Convert vCard fake files to first-class JSON files.
+ * A draft algorithm.
  * Use at project's root #nodejs src/build3-contacts.js data/contacts-fake1.vcf > data/contacts-fake1.json
+ * options --pretty or --br or --brpretty
  */
 var fs = require ('fs');   // file system call
 var s = require('underscore.string');  // see s(*)
@@ -65,7 +63,7 @@ function parseVCard(inputBlockLines) {
               },
               true );
             //fields[key].push()
-        } else discard.push(line);
+        } else discard.push(vc_unescape(line));
     });
 
     if (fields['n']) {
@@ -76,6 +74,15 @@ function parseVCard(inputBlockLines) {
        false // nao copia vazios.
       );
       delete fields['n'];
+    }
+    if (fields['org']) {
+      var p = fields['org'].split(';');
+      var o = {name:p[0]};
+      if (p[1]) o.subOrganization = p[1];
+      if (p[2]) o.subOrganization2 = p[2];
+      if (p[3]) o.subOrganization3 = p[3];
+      fields['Organization'] = o;
+      delete fields['org'];
     }
 
     _.omit( fields, _.isEmpty) // similar to _.compact()
@@ -96,7 +103,12 @@ if (!process.argv[2]) {
 		var vc = vc_parseBlock(b,false)
     r.push(vc)
 	}
-  console.log( JSON.stringify(r,null,3) );
+  if (process.argv[3] && process.argv[3].indexOf('pretty')!=-1) // any string as option
+    var jr = JSON.stringify(r,null,3);
+  else
+    var jr =  JSON.stringify(r);
+  //if (process.argv[3].indexOf('br')!=-1) jr.replace(/\\n/g, "<br/>");
+  console.log( jr );
 }
 
 ///
@@ -131,7 +143,7 @@ function vc_parseBlock(data,parseVcard=false) {
 	return parseVCard? parseVCard(linesFull): linesFull.join("\n");
 }
 function vc_unescape(x) {
-	return x.replace(/\\,/g, ",").replace(/\\n/g, "\n");
+	return x.replace(/\\,/g, ",").replace(/\\n/g, "<br/>").replace(/\\:/g, ":");
 }
 
 function vc_splitSCparts(r) {
@@ -155,6 +167,7 @@ function vc_splitSCparts(r) {
 //// complement for underscore.js
 
 function obj_addByKeysVals(obj,keys,vals,canEmpty=false) {
+  // alternative is return _.extend(obj,_.object(keys,vals));  ... with _.omitBy(_.object(keys,vals), _.isNil)
   for (var i=0; i<vals.length;i++) {
     var val = vals[i];
     var key = keys[i];

@@ -9,13 +9,15 @@ CREATE TABLE socker.agent (
 	-- See UML and http://xmlns.com/foaf/spec/#term_Agent
 	--
 	agId bigint DEFAULT nextval('socker.agent_id_seq') NOT NULL PRIMARY KEY,
-	agtype int NOT NULL CHECK(socker.valid_enum(agtype,'agtype')), -- vals 1=org, 2=person, 3=group, 4=robot, etc.
+	agtype int NOT NULL CHECK(socker.valid_enum(agtype,'agtype')), -- vals 1=person, 2=org, 3=group, 4=robot, etc.
 	legaltype bigint REFERENCES socker.enum_item(id), -- see http://gs1.org/voc/organizationRole
 	status smallint DEFAULT  '001'::bit(3)::int CHECK(socker.valid_enum(status,'status-type')),
      -- STATUS CONVENTION: bit3=not/endorsed, bit1=informal/formal, bit0=inactive/ative.
 	info JSONb NOT NULL CHECK (trim(info->>'name_main')>''),
 	kx_name text NOT NULL CHECK(char_length(kx_name)<300),  -- cache from info, local name.
-	kx_urn text CHECK(char_length(kx_urn)<500),    -- cache from info, like URN LEX. NULL for status informal
+	kx_urn text CHECK(char_length(kx_urn)<500),    -- is an ID (like URN LEX) cached from info. NULL for status informal
+	created timestamp NOT NULL DEFAULT now(),
+	updated timestamp NOT NULL DEFAULT now(),
 	UNIQUE(kx_urn)
 );    -- need final check for info
 
@@ -23,18 +25,14 @@ CREATE TABLE socker.contacthing (
 	--
 	-- See UML, ContactPoint and https://schema.org/Thing
 	--
-	thid serial NOT NULL PRIMARY KEY,
-	thtype int NOT NULL CHECK(socker.valid_enum(thtype,'thtype')), -- vals 1=telephon, 2=email, etc.
-	needcomplement boolean NOT NULL DEFAULT false,
+	thId serial NOT NULL PRIMARY KEY,
+	thType int NOT NULL CHECK(socker.valid_enum(thtype,'thtype')), -- vals 1=telephon, 2=email, etc.
+	needComplement boolean NOT NULL DEFAULT false,
 	kx_urn text NOT NULL CHECK(char_length(kx_urn)<500),              -- cache from info
 	info JSONb NOT NULL CHECK (trim(info->>'val')>''),
 	UNIQUE(kx_urn)
 );    -- need final check for info
 
-CREATE VIEW socker.contactpoint_full AS
-   SELECT cp.*, ct.*
-	 FROM socker.contactpoint cp NATURAL JOIN socker.contacthing ct
-;
 
 CREATE TABLE socker.contactpoint (
 	--
@@ -47,9 +45,17 @@ CREATE TABLE socker.contactpoint (
 	ismain boolean NOT NULL DEFAULT false,
 	rule int NOT NULL DEFAULT 0 CHECK(socker.valid_enum(rule,'ctrule')), -- undef, home, work, corresp, etc.
 	kx_complt text NOT NULL DEFAULT '', -- cache for normalized complement, like an URN
-	infopt JSONb CHECK (trim(info->>'complement')>''), -- info, NULL for no complement.
+	infopt JSONb CHECK (trim(infopt->>'complement')>''), -- info-point, NULL for no complement.
 	UNIQUE(agid,thid,kx_complt)
 );    -- need final check for info
+
+
+----- VIEWS
+
+CREATE VIEW socker.contactpoint_full AS
+   SELECT *
+	 FROM socker.contactpoint cp NATURAL JOIN socker.contacthing ct
+;
 
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -60,35 +66,16 @@ CREATE FUNCTION socker.thtype_from_thid(bigint) RETURNS integer AS $func$
 $func$ LANGUAGE SQL IMMUTABLE;
 
 CREATE FUNCTION socker.make_agname(JSONb, agtype integer) RETURNS text AS $func$
-
-	SELECT $1->>'name_main' || COALESCE(' ' || CASE
-		   -- WHEN $2=2 THEN $1->>'name_suffix' -- Organization
-		   WHEN $2=1 THEN $1->>'name_surname' -- Person
-		   ELSE $1->>'name_suffix'
-		END, '')
-	;
-$func$ LANGUAGE SQL IMMUTABLE;
-
-CREATE FUNCTION socker.make_urn(
-	--
-	-- Like a LEX URN. See https://tools.ietf.org/html/draft-spinosa-urn-lex-10
-	--
-	JSONb, 			-- 1. the source parts of a URN
-	subtype integer, 	-- 2. table subtype (agtype, thtype, etc.)
-	classtype int DEFAULT 0,-- 3. table 0=Agent, 1=Contacthing, 2=ContactPoint
-	null_aserror boolean DEFAULT true
-) RETURNS text AS $func$
 	SELECT CASE
-		   WHEN $3=1 THEN COALESCE(make_cthing_urn($1),'')
-		   WHEN $3=2 THEN COALESCE(make_ctpoint_urn($1),'')  -- ELSE $3=0
-		   WHEN $2=1 THEN make_org_urn($1) -- can be null
-		   WHEN $2=2 THEN make_person_urn($1) -- can be null
-		   WHEN $2=3 THEN make_robot_urn($1) -- can be null
-		   WHEN $2=4 THEN make_group_urn($1) -- can be null
-		   ELSE CASE WHEN $4 THEN NULL ELSE 'ERROR_ON_MAKE_URN' END
-	END
-	;
+		WHEN $2=1 AND $1->'familyName' IS NOT NULL AND $1->'givenName' IS NOT NULL THEN
+			$1->>'givenName' || ' ' || COALESCE($1->>'additionalName'||' ','') || ($1->>'familyName')
+		WHEN $2=1 THEN
+			$1->>'fn'
+		ELSE
+			$1->>'name_main' ||' ' || COALESCE($1->>'name_suffix'||' ','')
+	END;
 $func$ LANGUAGE SQL IMMUTABLE;
+
 
 
 CREATE FUNCTION socker.get_agtype(
@@ -101,3 +88,20 @@ CREATE FUNCTION socker.get_agtype(
 	SELECT  CASE WHEN $2 AND NOT(status&3) THEN 0 ELSE agtype END
 	FROM socker.agent WHERE agid=$1;
 $func$ LANGUAGE SQL IMMUTABLE;
+
+
+------------------
+
+
+INSERT INTO socker.agent(agtype,legaltype,kx_name,status,info)
+-- usar formato vCard padrão
+  WITH t AS (
+		SELECT jsonb_array_elements(info::JSONb) as jvc
+  	FROM socker.csv_tmp2  -- middlename
+  ) SELECT
+			 1 as agtype, NULL as legaltype, socker.make_agname(jvc,1) as kx_name,
+			 1 as status, jvc as info  -- falta um filtro para preservar só campos válidos validfields(j,agtype)
+			 -- URN based on vatID!
+			 -- name-base is 'urn:person:br:'||regexp_replace(lower(socker.make_agname(jvc,1)), '[\s]+', '.', 'g')
+    FROM t;
+  ;

@@ -57,11 +57,11 @@ To develop a simple framework for
 
  * Store stable and curated data: [digital preservation](https://en.wikipedia.org/wiki/Digital_preservation) of original data (like [LOCKSS](https://en.wikipedia.org/wiki/LOCKSS)) and subsequent data processing (like *git commit* or [Mediawiki's page history](https://en.wikipedia.org/wiki/Help:Page_history)).
 
- * Complete mappeding: adequate [object-relational mapping](https://en.wikipedia.org/wiki/Object-relational_mapping) and complete [semantic mapping](https://en.wikipedia.org/wiki/Ontology_alignment).
+ * Complete map: adequate [object-relational mapping](https://en.wikipedia.org/wiki/Object-relational_mapping) and complete [semantic mapping](https://en.wikipedia.org/wiki/Ontology_alignment).
 
  * A framework for [back-end](https://en.wikipedia.org/wiki/Front_and_back_ends#Back-end_focused) and "data in bulk", not for end users.
 
-Incrementally: both, implementing this model and for user, adopting this model.
+Incrementally: both, implementing this project and adopting this model.
 
 ## Prepare and installation
 
