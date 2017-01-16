@@ -17,12 +17,14 @@ The SQL script [build1-sch.sql](build1-sch.sql) builds the `socker` SQL SCHEMA w
 
 ```
 cd socKer-complete  # the git clone folder
-# sudo rm /tmp/pgstd_socKer_file*
+# sudo rm /var/tmp/pgstd_socKer_file*
 sudo chmod  666 data/enum.csv data/contacts-fake1.json
-sudo ln -sf $PWD/data/enum.csv /tmp/pgstd_socKer_file1.csv  # connect to file_fdw
-sudo ln -sf $PWD/data/contacts-fake1.json /tmp/pgstd_socKer_file2.txt  # connect to file_fdw
-#if problems sudo chown -h postgres:postgres /tmp/pgstd_socKer_file1.csv /tmp/pgstd_socKer_file2.txt
-psql -h localhost -U postgres testdb < src/build1-sch.sql
+sudo ln -sf $PWD/data/enum.csv /var/tmp/pgstd_socKer_file1.csv  # connect to file_fdw
+sudo ln -sf $PWD/data/contacts-fake1.json /var/tmp/pgstd_socKer_file2.txt  # connect to file_fdw
+#if problems sudo chown -h postgres:postgres /var/tmp/pgstd_socKer_file1.csv /var/tmp/pgstd_socKer_file2.txt
+psql -h localhost -U postgres testdb < src/build1-lib.sql
+psql -h localhost -U postgres testdb < src/build2-sch.sql
+
 ```
 The SQL script also INSERTs contents from [enum.csv](../data/enum.csv).
 
@@ -31,5 +33,5 @@ The SQL script also INSERTs contents from [enum.csv](../data/enum.csv).
 The SQL script [build2-main.sql](build2-main.sql) builds the main tables and add main constrains.
 
 ```
-psql -h localhost -U postgres testdb < src/build2-main.sql
+psql -h localhost -U postgres testdb < src/build3-main.sql
 ```

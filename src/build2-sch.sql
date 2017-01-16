@@ -1,5 +1,5 @@
 --
--- BUILD1. See https://github.com/ppKrauss/socKer-complete
+-- BUILD2. See https://github.com/ppKrauss/socKer-complete
 --
 
 DROP SCHEMA IF EXISTS socker CASCADE;
@@ -44,6 +44,8 @@ ALTER TABLE socker.enum_item ADD CONSTRAINT enum_chk
 INSERT INTO socker.enum_item(namespace,val,label,def_url) VALUES
 	('_ns',1,'agtype','https://github.com/ppKrauss/socKer-complete'),
 	('_ns',2,'thtype','https://github.com/ppKrauss/socKer-complete'),
+	('_ns',3,'srctype',''),
+	('_ns',4,'operation',''),
 	('_ns',10,'org-type',''),
 	('_ns',12,'org-legaltype',''),
 	('_ns',14,'person-type',''),
@@ -71,14 +73,14 @@ CREATE SERVER files FOREIGN DATA WRAPPER file_fdw;
 CREATE FOREIGN TABLE socker.csv_tmp1 (
   namespace text,val int,label text,def_url text, info text
 ) SERVER files OPTIONS (
-  filename '/tmp/pgstd_socKer_file1.csv', -- a standard elected one (eg. /usr/local)
+  filename '/var/tmp/pgstd_socKer_file1.csv', -- a standard elected one (eg. /usr/local)
     format 'csv',
     header 'true'
 );
 CREATE FOREIGN TABLE socker.csv_tmp2 (
   info text
 ) SERVER files OPTIONS (
-  filename '/tmp/pgstd_socKer_file2.txt', -- a standard elected one
+  filename '/var/tmp/pgstd_socKer_file2.txt', -- a standard elected one
     format 'text'
 );
 
