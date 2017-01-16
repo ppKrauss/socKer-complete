@@ -39,6 +39,10 @@ CREATE FUNCTION lib.jsonb_grep(JSONb,text[]) RETURNS JSONb AS $func$
 	WHERE j.key = ANY($2);
 $func$ LANGUAGE SQL IMMUTABLE;
 
+CREATE FUNCTION jsonb_arr2text_arr(_js jsonb) RETURNS text[] AS $func$
+	-- see http://dba.stackexchange.com/a/54289/90651
+	SELECT ARRAY(SELECT jsonb_array_elements_text(_js))
+$func$ LANGUAGE SQL IMMUTABLE;
 
 -- -- -- -- -- -- -- --
 -- -- -- TEXT functions:

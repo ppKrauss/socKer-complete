@@ -46,6 +46,7 @@ INSERT INTO socker.enum_item(namespace,val,label,def_url) VALUES
 	('_ns',2,'thtype','https://github.com/ppKrauss/socKer-complete'),
 	('_ns',3,'srctype',''),
 	('_ns',4,'operation',''),
+	('_ns',5,'ctrule',''),	
 	('_ns',10,'org-type',''),
 	('_ns',12,'org-legaltype',''),
 	('_ns',14,'person-type',''),

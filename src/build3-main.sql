@@ -98,6 +98,7 @@ CREATE OR REPLACE FUNCTION socker.jcard_upsert(
 ) RETURNS int AS $f$
 DECLARE
  ret_id bigint;
+ q_rule int;
 BEGIN
 	IF p_op=1 AND $1->'vatID' IS NOT NULL THEN  -- informal jCard input
 	 INSERT INTO socker.agent(agtype,legaltype,kx_name,     status, info, kx_urn)
@@ -113,8 +114,17 @@ BEGIN
 
 	ELSEIF p_op=5 AND $1->'value' IS NOT NULL THEN  -- add contacThing type tel
 		INSERT INTO socker.contacthing(thType,needComplement,  kx_urn,info)  --tel=thtype 100
-			VALUES (100, false, 'urn:tel:55:'||($1->>'value'),  $1)  --socker.valid_info($1,'contacthing',1)  )
+			VALUES (100, false, 'urn:tel:55:'||($1->>'value'),  $1 - 'agid')
 			RETURNING thId INTO ret_id;
+		IF $1->'agid' IS NOT NULL THEN
+			q_rule = 0;
+			IF $1->'type' IS NOT NULL THEN
+				IF 'home' = ANY(jsonb_arr2text_arr($1->'type')) THEN q_rule = 4; END IF;
+				IF 'work' = ANY(jsonb_arr2text_arr($1->'type')) THEN q_rule = 2; END IF;
+			END IF;
+			INSERT INTO socker.contactpoint(agid,thid,ismain,rule)
+			VALUES (($1->>'agid')::bigint,  ret_id,  ('pref' = ANY(jsonb_arr2text_arr($1->'type')) ),  q_rule);
+		END IF;
 	ELSEIF p_op=5  THEN  -- add contacThing type tel
 			ret_id=-1;
 	ELSE
@@ -193,7 +203,8 @@ WITH t AS (
 WITH t1 AS (
 		SELECT jsonb_array_elements(info::JSONb) as jvc
 		FROM socker.csv_tmp2
-) SELECT agid, socker.jcard_upsert(tel,1,1,5) as upd
+) SELECT
+		agid, socker.jcard_upsert(tel||jsonb_build_object('agid',agid),1,1,5) as ud
   FROM (
 		SELECT  a.agid, jsonb_array_elements(jvc->'tel') AS tel
 		FROM t1 INNER JOIN socker.agent a ON a.kx_name=socker.make_agname(jvc,1)
