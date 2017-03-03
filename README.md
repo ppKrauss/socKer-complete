@@ -4,7 +4,7 @@ A complete "social kernel" database and back-end, to be implemented with with re
 
 It is a model to be used as core at any  [CRM](https://en.wikipedia.org/wiki/Customer_relationship_management)-like system... With precise information and a [RDF semantic](https://en.wikipedia.org/wiki/Resource_Description_Framework). The basic entities are defined in [SchemaOrg](https://schema.org/):
 
-* **_Agent_**: a generalization of [sc:Person](https://schema.org/Person), [sc:Organization](https://schema.org/Organization), [foaf:Group](http://xmlns.com/foaf/spec/#term_Group), and others, as  [foaf:Agent](http://xmlns.com/foaf/spec/#term_Agent) definition. <br>The specializations (eg. Person) can be implicit in a attribute, or explicit when implementing some relevant relation in the system.  
+* **_Agent_**: a generalization of [sc:Person](https://schema.org/Person), [sc:Organization](https://schema.org/Organization), [foaf:Group](http://xmlns.com/foaf/spec/#term_Group), and others, as  [foaf:Agent](http://xmlns.com/foaf/spec/#term_Agent) definition. <br>The specializations (eg. Person) can be implicit in a attribute, or explicit when implementing some relevant relation in the system.  PS: avoid confusion with [sc:agent](https://schema.org/agent).
 
 * **_ContactThing_**: a generic [sc:Thing](https://schema.org/Thing) that can be a [sc:Place](https://schema.org/Place) (its [sc:PostalAddress](https://schema.org/PostalAddress)), a [wd:telecommunication](https://www.wikidata.org/wiki/Q418) device (its eletronic address like telephone number or e-mail string), or other. All _ContactThing_ have an standard address (an [wd:URI](https://www.wikidata.org/wiki/Q61694))  and (optional to informe) an [wd:owner](https://www.wikidata.org/wiki/Q16869121).
 
