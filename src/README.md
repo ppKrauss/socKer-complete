@@ -13,7 +13,7 @@ Now you can use the `testdb` database. Change [build0-db.sql](build0-db.sql) to 
 
 ##  Step1 - create schema and ENUM
 
-The SQL script [build1-sch.sql](build1-sch.sql) builds the `socker` SQL SCHEMA with `socker.enum_item` table.
+The SQL script [build1-lib.sql](build1-lib.sql) builds the `socker` SQL SCHEMA with `socker.enum_item` table.
 
 ```
 cd socKer-complete  # the git clone folder
@@ -30,7 +30,7 @@ The SQL script also INSERTs contents from [enum.csv](../data/enum.csv).
 
 ##  Step2 - main tables and constraints
 
-The SQL script [build2-main.sql](build2-main.sql) builds the main tables and add main constrains.
+The SQL script [build3-main.sql](build3-main.sql) builds the main tables and add main constrains.
 
 ```
 psql -h localhost -U postgres testdb < src/build3-main.sql
