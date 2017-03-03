@@ -25,7 +25,7 @@ The main enhances about previous didactic [socKer-simple](https://github.com/ppK
 LEGEND: _isa_ and _ispart_ in class-inheritances denotes "is a" and "is part of" forms. A digit after it, as "isa2", is a label for group the children. The indications "dj" and "ov" in a group, as "isa1dj", indicates that children are disjoint and overlaped sets, respectively. Similarly "of" in cardinality is a label for "participation group", and can be "of1", "of2", "of1dj", "of1ov", etc.
 
 
-See [build1.sql](src/build1.sql)
+See [build3-main.sql](src/build3-main.sql)
 
 ### Inheritances and ENUMs
 
